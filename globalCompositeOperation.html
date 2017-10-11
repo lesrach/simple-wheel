@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		*{
+			margin: 0;
+			padding: 
+		}
+		#canvas,#canvas1{
+			display: block;
+			margin: 0 auto;
+			border: 1px solid #333;
+		}
+		.control{
+			text-align: center;
+		}
+		.control a{
+			display: inline-block;
+		}
+	</style>
+</head>
+<body>
+	<canvas width=1000 height=400 id="canvas"></canvas>
+	<canvas width=1000 height=200 id="canvas1"></canvas>
+	<div class="control">
+		<a href="" class="opacity" style="color:red;">opacity:1</a>
+		<a href="" class="source-over">source-over</a>
+		<a href="" class="source-atop">source-atop</a>
+		<a href="" class="source-in">source-in</a>
+		<a href="" class="source-out">source-out</a>
+		<a href="" class="destination-over">destination-over</a>
+		<a href="" class="destination-atop">destination-atop</a>
+		<a href="" class="destination-in">destination-in</a>
+		<a href="" class="destination-out">destination-out</a>
+		<a href="" class="lighter">lighter</a>
+		<a href="" class="copy">copy</a>
+		<a href="" class="xor">xor</a>
+	</div>
+</body>
+	<script src="http://libs.baidu.com/jquery/2.0.0/jquery.js"></script>
+	<script type="text/javascript">
+		var log = console.log.bind(this); 
+		var can = document.querySelector("#canvas"),can1 = document.querySelector("#canvas1");
+		var ctx = can.getContext("2d"),ctx1= can1.getContext("2d");
+		$("a").click(function(e){
+			e.preventDefault();
+			ctx1.globalCompositeOperation = ctx.globalCompositeOperation = $(this).attr("class");
+		})
+		$(".opacity").click(function(e){
+			e.preventDefault();
+			if($(this).html() == "opacity:1"){
+				ctx1.globalAlpha = ctx.globalAlpha = 0.7;
+				$(this).html("opacity:0.7");
+			} else{
+				ctx1.globalAlpha = ctx.globalAlpha = 1;
+				$(this).html("opacity:1");
+			}
+		})
+		var circles = [];
+		
+
+
+		function Circle(){
+			this.x = Math.random()*800+100;
+			this.y = Math.random()*200+100;
+			this.r = Math.random()*20+30;
+			this.vx = Math.pow(-1,parseInt(Math.random()*100)) * 5;
+			this.vy = Math.pow(-1,parseInt(Math.random()*100)) * 3;
+			this.color = getColor();
+		}
+		Circle.prototype = {
+			constructor: Circle,
+			move: function(){
+				this.x += this.vx;
+				this.y += this.vy
+				if(this.x < this.r || this.x > 1000-this.r){
+					this.vx = - this.vx;
+				}
+				if(this.y < this.r || this.y > 400-this.r){
+					this.vy = - this.vy;
+				}
+			},
+			init: function(){
+				log(this.r);
+			}
+		}
+
+		function draw(){
+			ctx.clearRect(0,0,1000,400);
+			for(var i=0; i<circles.length; i++){
+				circles[i].move();
+				ctx.beginPath();
+				ctx.fillStyle = circles[i].color;
+				ctx.arc(circles[i].x,circles[i].y,circles[i].r,0,2*Math.PI);
+				ctx.fill();
+			}
+			ctx1.fillStyle = "#f00";
+			ctx1.fillRect(50,50,300,100);
+			ctx1.beginPath();
+			ctx1.fillStyle = "#00f";
+			ctx1.arc(300,100,80,0,2*Math.PI);
+			ctx1.fill();
+		}
+
+		function getColor(){
+			var str = parseInt(Math.random()*0xffffff).toString(16);
+			while(str.length<6){
+				str = "0" + str;
+			}
+			return "#"+str;
+		}
+
+
+		for(var i=0;i<50;i++){
+			var circle = new Circle();
+			circles.push(circle);
+		}
+
+		setInterval(draw,1000/60);
+	</script>
+</html>
