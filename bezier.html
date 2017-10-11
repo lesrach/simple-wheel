@@ -1,0 +1,94 @@
+<html>
+<head>
+	<title></title>
+	<style type="text/css">
+		*{
+			margin: 0;
+			padding: 
+		}
+		#canvas{
+			display: block;
+			margin: 50px auto;
+			border: 1px solid #333;
+		}
+	</style>
+</head>
+<body>
+	<canvas id="canvas" width=1000 height=600></canvas>
+	<script type="text/javascript">
+	    var log = console.log.bind(this); 
+		var can = document.querySelector("#canvas");
+		var ctx = can.getContext("2d");
+		var point = [{
+			x: 100,
+			y: 100
+		},
+		{
+			x: 300,
+			y: 500
+		},
+		{
+			x: 500,
+			y: 500
+		},
+		{
+			x: 700,
+			y: 100
+		}];
+
+		var _point = JSON.parse(JSON.stringify(point));
+		draw();
+		can.onmousedown = function(e){
+			var initX =  e.offsetX ,initY = e.offsetY;
+			var obj = draw(initX,initY);
+			can.onmousemove = function(e){
+				var x = e.offsetX,y = e.offsetY;
+				point[obj.index].x = x + _point[obj.index].x - initX;
+				point[obj.index].y = y + _point[obj.index].y - initY;
+				draw(initX,initY);
+			}
+		}
+		window.onmouseup = function(){
+			_point = JSON.parse(JSON.stringify(point));
+			can.onmousemove = null;
+		}
+
+		function draw(x,y){
+			ctx.clearRect(0,0,1000,600);
+			var isInPath = false,
+				index;
+			ctx.fillStyle = "#00f";
+			ctx.strokeStyle = "#000";
+			ctx.moveTo(point[0].x,point[0].y);
+			ctx.bezierCurveTo(point[1].x,point[1].y,point[2].x,point[2].y,point[3].x,point[3].y);
+			ctx.stroke();
+
+			ctx.beginPath();
+			ctx.moveTo(point[0].x,point[0].y);
+			ctx.lineTo(point[1].x,point[1].y);
+			ctx.stroke();
+			ctx.beginPath();
+			ctx.moveTo(point[2].x,point[2].y);
+			ctx.lineTo(point[3].x,point[3].y);
+			ctx.stroke();
+
+			for(var i = 0;i<point.length; i++){
+				ctx.beginPath();
+				ctx.strokeStyle = "fff";
+				ctx.arc(point[i].x,point[i].y,50,0,2*Math.PI);
+				if( x && ctx.isPointInPath(x,y)){
+					isInPath = true;
+					index = i;
+				}
+				ctx.fill();
+				var text = "点"+i+":坐标X:"+point[i].x+"Y:"+point[i].y;
+				ctx.strokeText(text,point[i].x,point[i].y);
+			}
+			return {
+				isInPath: isInPath,
+				index: index
+			};
+		}
+	</script>
+</body>
+</html>
