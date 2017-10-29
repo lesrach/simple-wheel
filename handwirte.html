@@ -15,18 +15,24 @@
 			left: 20px;
 			top: 100px;
 			width: 80px;
-
+		}
+		#font{
+			position: fixed;
+			left: 20px;
+			top: 140px;
 		}
 	</style>
 </head>
 <body>
 	<canvas id="can"></canvas>
 	<button id="clear">清除</button>
+	<input type="text" placeholder="字体粗细" id="font">
 	<script>
 		var canvas = document.getElementById("can");
 		var ctx = canvas.getContext("2d");
 		canvas.width = 800;
 		canvas.height = 800;
+		var lineWidth = 5;
 		drawBack();
 
 		var point = {x:0,y:0};
@@ -75,13 +81,22 @@
 			ctx.moveTo(x1,y1);
 			ctx.lineTo(x2,y2);
 			ctx.strokeStyle = "#000";
-			ctx.lineWidth = 2;
+			ctx.lineWidth = lineWidth;
+			ctx.lineCap = "round";
 			ctx.stroke();
 		}
 
 		clear.onclick = function(){
 			ctx.clearRect(0,0,800,800);
 			drawBack();
+		}
+
+		font.onblur = function(){
+			var num = Math.floor(this.value);
+			console.log(num);
+			if(num !== "NaN"){
+				lineWidth = num;
+			}
 		}
 	</script>
 </body>
