@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>test</title>
+	<link rel="stylesheet" href="">
+	<style>
+		#can{
+			margin: 0 auto;
+			display: block;
+		}
+		#clear{
+			position: fixed;
+			left: 20px;
+			top: 100px;
+			width: 80px;
+
+		}
+	</style>
+</head>
+<body>
+	<canvas id="can"></canvas>
+	<button id="clear">清除</button>
+	<script>
+		var canvas = document.getElementById("can");
+		var ctx = canvas.getContext("2d");
+		canvas.width = 800;
+		canvas.height = 800;
+		drawBack();
+
+		var point = {x:0,y:0};
+		canvas.onmousedown = function(e){
+			point.x = e.offsetX;
+			point.y = e.offsetY;
+			canvas.onmousemove = function(e){
+				lineTo(point.x,point.y,e.offsetX,e.offsetY);
+				point.x = e.offsetX;
+				point.y = e.offsetY;
+			}
+			canvas.onmouseout = function(e){
+				canvas.onmousemove = null;
+			}
+		}
+		window.onmouseup = function(e){
+			canvas.onmousemove = null;
+		}
+
+		function drawBack(){
+			ctx.beginPath();
+			ctx.moveTo(3,3);
+			ctx.lineTo(797,3);
+			ctx.lineTo(797,797);
+			ctx.lineTo(3,797);
+			ctx.closePath();
+			ctx.lineWidth = 6;
+			ctx.strokeStyle = "#f00";
+			ctx.stroke();
+
+			ctx.beginPath();
+			ctx.moveTo(0,0);
+			ctx.lineTo(800,800);
+			ctx.moveTo(800,0);
+			ctx.lineTo(0,800);
+			ctx.moveTo(400,0);
+			ctx.lineTo(400,800);
+			ctx.moveTo(0,400);
+			ctx.lineTo(800,400);
+			ctx.lineWidth = 2;
+			ctx.stroke();
+		}
+
+		function lineTo(x1,y1,x2,y2){
+			ctx.beginPath()
+			ctx.moveTo(x1,y1);
+			ctx.lineTo(x2,y2);
+			ctx.strokeStyle = "#000";
+			ctx.lineWidth = 2;
+			ctx.stroke();
+		}
+
+		clear.onclick = function(){
+			ctx.clearRect(0,0,800,800);
+			drawBack();
+		}
+	</script>
+</body>
+</html>
