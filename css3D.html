@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" type="text/css" href="../../reset.css"/>
+		<style type="text/css">
+			body>div{animation: zi 1s linear infinite; font-size: 200px; line-height: 1000px; text-align: center; color: red; position: relative; z-index: 100; }
+			body{height: 100%; width: 100%; overflow: hidden; background: url(../seven_29.jpg) no-repeat center center; background-size: cover; overflow: hidden;}
+			div{ perspective:1000px;}
+			ul{height: 200px; width: 200px; border: 1px solid red; position: absolute; left: 0 ; right:  0 ; top: 0; bottom: 0; margin: auto; transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg); transform-style: preserve-3d; transition: all 150s linear; animation: run 150s linear infinite;}
+			li{position: absolute; background:#000; transition: all 10s linear; height: 200px; width: 200px;transform-style: preserve-3d; border: 1px solid blue;}
+			li:nth-of-type(1){transform: translateZ(100px);}
+			li:nth-of-type(2){transform: translateZ(-100px) rotateX(180deg);}
+			li:nth-of-type(3){transform: rotateX(90deg) translateZ(100px);}
+			li:nth-of-type(4){transform: rotateX(90deg) translateZ(-100px) rotateX(180deg);}
+			li:nth-of-type(5){transform: rotateY(90deg) translateZ(100px);}
+			li:nth-of-type(6){transform: rotateY(90deg) translateZ(-100px) rotateX(180deg);}
+			li div:nth-of-type(1){height: 1000px; width: 1px; position:absolute; left:100px; top:100px ;background: red; box-shadow: 0 0 30px 20px red;  transform-origin: 0 0; transform: rotateX(90deg);}
+			li div:nth-of-type(2){height: 1px; width: 1000px; position:absolute; left:100px; top:100px ;background: red; box-shadow: 0 0 30px 20px red; transform-origin: 0 0; transform: rotateY(-90deg);}
+			li div:nth-of-type(3){height: 1000px; width: 1px; position:absolute; left:100px; top:30px ;background: blue; box-shadow: 0 0 30px 20px blue;  transform-origin: 0 0; transform: rotateX(110deg);}
+			li div:nth-of-type(4){height: 1px; width: 1000px; position:absolute; left:100px; top:30px ;background: blue; box-shadow: 0 0 30px 20px blue; transform-origin: 0 0; transform: rotateY(-90deg)  rotatez(-20deg);}
+			li div:nth-of-type(5){height: 1000px; width: 1px; position:absolute; left:100px; top:170px ;background: green; box-shadow: 0 0 30px 20px green;  transform-origin: 0 0; transform: rotateX(70deg)  ;}
+			li div:nth-of-type(6){height: 1px; width: 1000px; position:absolute; left:100px; top:170px ;background: green; box-shadow: 0 0 30px 20px green; transform-origin: 0 0; transform: rotateY(-90deg)  rotatez(20deg);}
+			li div:nth-of-type(7){height: 1000px; width: 1px; position:absolute; left:50px; top:70px ;background: yellow; box-shadow: 0 0 30px 20px yellow;  transform-origin: 0 0; transform: rotateX(90deg) rotatez(20deg);}
+			li div:nth-of-type(8){height: 1px; width: 1000px; position:absolute; left:50px; top:70px ;background: yellow; box-shadow: 0 0 30px 20px yellow; transform-origin: 0 0; transform: rotateY(-110deg);}
+			li div:nth-of-type(9){height: 1000px; width: 1px; position:absolute; left:50px; top:130px ;background: pink; box-shadow: 0 0 30px 20px  pink;  transform-origin: 0 0; transform: rotateX(90deg)  rotatez(20deg);}
+			li div:nth-of-type(10){height: 1px; width: 1000px; position:absolute; left:50px; top:130px ;background: pink; box-shadow: 0 0 30px 20px  pink; transform-origin: 0 0; transform: rotateY(-110deg);}
+			li div:nth-of-type(11){height: 1000px; width: 1px; position:absolute; left:150px; top:70px ;background: purple; box-shadow: 0 0 30px 20px purple;  transform-origin: 0 0; transform: rotateX(90deg) rotatez(-20deg);}
+			li div:nth-of-type(12){height: 1px; width: 1000px; position:absolute; left:150px; top:70px ;background: purple; box-shadow: 0 0 30px 20px purple; transform-origin: 0 0; transform: rotateY(-70deg);}
+			li div:nth-of-type(13){height: 1000px; width: 1px; position:absolute; left:150px; top:130px ;background: silver; box-shadow: 0 0 30px 20px silver;  transform-origin: 0 0; transform: rotateX(90deg) rotatez(-20deg);}
+			li div:nth-of-type(14){height: 1px; width: 1000px; position:absolute; left:150px; top:130px ;background: silver; box-shadow: 0 0 30px 20px silver; transform-origin: 0 0; transform: rotateY(-70deg);}
+			/*html:hover ul{transform: rotateX(36000deg)  rotateY(36000deg)  rotateZ(36000deg);}*/
+			@keyframes  run{
+				0%{transform: rotateX(00deg)  rotateY(00deg)  rotateZ(00deg);}
+				100%{transform: rotateX(36000deg)  rotateY(36000deg)  rotateZ(36000deg);}
+			}
+			@keyframes zi{
+				from{opacity: 1;}
+				to{opacity: 0;}
+			}
+		</style>
+		<title></title>
+	</head>
+	<body>
+		<div>music</div>
+		<ul>
+		<li>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+		</li>
+		<li>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+		</li>
+		<li>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+		</li>
+		<li>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+		</li>
+		<li>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+		</li>
+		<li>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+		</li>
+		</ul>
+	</body>
+</html>
