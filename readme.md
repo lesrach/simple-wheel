@@ -6,3 +6,4 @@ handwirte.html "canvas手写"<br/>
 carousel.js "面向对象的轮播图"<br/>
 clock.js "canvas 的倒计时特效图"<br/>
 worm.js "node简单爬虫"<br/>
+drag.html "可拖拽的列表"<br/>

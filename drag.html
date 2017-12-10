@@ -1,0 +1,92 @@
+<html>
+<head>
+	<title></title>
+	<style type="text/css">
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		#list{
+			width: 100px;
+			height: 640px;
+			display: flex;
+			flex-direction: column;
+			margin: 50px auto;
+			background: #ccc;
+			position: relative;
+		}
+		#list li,#drag{
+			flex:1;
+			line-height: 80px;
+			text-align: center;
+			list-style: none;
+			cursor: pointer;
+			width: 100px;
+		}
+		#list li:active{
+			cursor: move;
+		}
+	</style>
+</head>
+<body>
+	<ul id='list'>
+		<li>一</li>
+		<li>二</li>
+		<li>三</li>
+		<li>四</li>
+		<li>五</li>
+		<li>六</li>
+		<li>七</li>
+		<div id='drag'>点击可拖拽</div>
+	</ul>
+	<script type="text/javascript">
+		var drag = false;
+		var _li = document.getElementsByTagName('li');
+		var _ul = document.getElementById('list');
+		var _drag = document.getElementById('drag');
+	    _drag.onclick = function(){
+	    	drag = !drag;
+	    	
+	    }
+	    _ul.addEventListener('mousedown',function(e){
+	    	if(drag && e.target.nodeName === 'LI'){
+	    		var _target = e.target;
+	    		var clone = e.target.cloneNode(true);
+	    		_target.style.visibility = "hidden";
+	    		clone.style.position = 'absolute';
+	    		clone.style.top = _target.offsetTop;
+	    		clone.style.background = '#ff6700';
+	    		_ul.append(clone);
+	    		var _x = e.offsetX,
+	    			_y = e.offsetY,
+	    			index;
+	    		for(var i = 0; i<_li.length;i++){
+		    		if(_li[i] === e.target){
+		    			index = i;
+		    		}
+		    	}
+	    		window.onmousemove = function(e){
+	    			clone.style.left = e.clientX - _ul.offsetLeft- _x;
+	    			clone.style.top = e.clientY - _ul.offsetTop - _y;
+	    			var _offsetY = e.clientY - _ul.offsetTop;
+	    			var _index = Math.floor((_offsetY-_y + 40)/80);
+	    			_index = _index < 0 ? 0 : _index;
+	    			if(_index !== index){
+	    				_ul.removeChild(_li[index]);
+	    				_ul.insertBefore(_target,_li[_index]);
+	    				index = _index;
+	    			}
+	    		}
+	    		window.onmouseup = function(e){
+	    			_target.style.visibility = 'visible';
+	    			if(clone){
+	    				_ul.removeChild(clone);
+	    			}
+	    			window.onmousemove = null;
+	    			window.onmouseup = null;
+	    		}
+	    	} 
+	    })
+	</script>
+</body>
+</html>
